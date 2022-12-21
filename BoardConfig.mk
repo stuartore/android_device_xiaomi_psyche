@@ -116,25 +116,21 @@ BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
 BOARD_KERNEL_CMDLINE += \
     console=ttyMSM0,115200n8 \
     pcie_ports=compat
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
-BOARD_RAMDISK_USE_LZ4 := true
-
-BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
-
 BOARD_RAMDISK_OFFSET := 0x01000000
 BOARD_RAMDISK_USE_LZ4 := true
 
 KERNEL_LLVM_SUPPORT := true
+SELINUX_IGNORE_NEVERALLOWS := true
 
 TARGET_KERNEL_CONFIG := vendor/kona-perf_defconfig vendor/xiaomi/sm8250-common.config
 TARGET_KERNEL_CONFIG += vendor/xiaomi/psyche.config
 TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8250
-
-SELINUX_IGNORE_NEVERALLOWS := true
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
