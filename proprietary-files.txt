@@ -1,4 +1,5 @@
 # All blobs from MIUI are extracted from V13.0.10.0.SLDCNXM_20221026.0000.00_12.0_cn
+
 # ADSPRPC
 vendor/bin/adsprpcd
 vendor/bin/cdsprpcd
@@ -1684,12 +1685,18 @@ vendor/firmware/cs35l41-dsp1-spk-prot-revb2.wmfw
 vendor/firmware/cs35l41-dsp1-spk-prot.bin
 vendor/firmware/cs35l41-dsp1-spk-prot.wmfw
 
-# Vibratorfeature
-vendor/lib64/vendor.hardware.vibratorfeature.IVibratorExt-V1-ndk_platform.so
+# Vibrator (Xiaomi)
+system/lib/vendor.xiaomi.hardware.vibratorfeature@1.0.so
+system/lib64/vendor.xiaomi.hardware.vibratorfeature@1.0.so
 vendor/bin/hw/vendor.xiaomi.hardware.vibratorfeature.service
-vendor/etc/init/vendor.xiaomi.hardware.vibratorfeature@1.0-service.rc
 vendor/etc/init/vendor.xiaomi.hardware.vibratorfeature.service.rc
+vendor/etc/init/vendor.xiaomi.hardware.vibratorfeature@1.0-service.rc
+vendor/etc/vintf/manifest/vendor.xiaomi.hardware.vibratorfeature.service.xml
+vendor/lib64/vendor.hardware.vibratorfeature.IVibratorExt-V1-ndk_platform.so
+
+# Vibrator lib
 vendor/lib64/libaachaptics.so
+
 # Displayfeature
 vendor/lib64/libdisplayfeature.so
 vendor/lib64/hw/displayfeature.default.so

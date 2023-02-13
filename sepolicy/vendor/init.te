@@ -10,3 +10,5 @@ allow init proc_last_kmsg:file {
 
 allow init adsprpcd_file:file mounton;
 allow init per_boot_file:file ioctl;
+
+allow vendor_hvdcp sysfs:file {read open};

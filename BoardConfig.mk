@@ -129,8 +129,11 @@ KERNEL_LLVM_SUPPORT := true
 SELINUX_IGNORE_NEVERALLOWS := true
 
 TARGET_KERNEL_CONFIG := vendor/kona-perf_defconfig vendor/xiaomi/sm8250-common.config
+#TARGET_KERNEL_CONFIG := vendor/kona-perf_defconfig vendor/xiaomi/xiaomi-kona-common.config
 TARGET_KERNEL_CONFIG += vendor/xiaomi/psyche.config
-TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8250
+
+#TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8250
+TARGET_KERNEL_SOURCE := kernel/xiaomi/void-sm8250
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)

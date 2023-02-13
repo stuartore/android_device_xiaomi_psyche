@@ -88,6 +88,9 @@ EOF
         vendor/etc/media_codecs_kona.xml)
             sed -i "/media_codecs_dolby_audio.xml/d" "${2}"
             ;;
+        vendor/bin/hw/vendor.xiaomi.hardware.vibratorfeature.service)
+            "${PATCHELF}" --replace-needed "libutils.so" "libutils-v32.so" "${2}"
+            ;;
    esac
 }
 

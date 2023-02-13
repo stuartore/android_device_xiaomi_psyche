@@ -478,12 +478,20 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_PACKAGES += \
     vndservicemanager
 
-# Vibrator
+# Vibrator Xiaomi
 PRODUCT_PACKAGES += \
-    vendor.qti.hardware.vibrator.service.xiaomi_psyche
+    vendor.qti.hardware.vibrator.service.xiaomi_kona \
+    android.hardware.vibrator-V1-ndk.vendor \
+    android.hardware.vibrator-V1-ndk_platform.vendor
 
+# Vibrator Configuration
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/vibrator/etc/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
+    $(LOCAL_PATH)/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
+    
+# VNDK
+PRODUCT_COPY_FILES += \
+    prebuilts/vndk/v32/arm64/arch-arm-armv8-a/shared/vndk-sp/libutils.so:$(TARGET_COPY_OUT_VENDOR)/lib/libutils-v32.so \
+    prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-sp/libutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libutils-v32.so
 
 # WiFi
 PRODUCT_PACKAGES += \

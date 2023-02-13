@@ -10,6 +10,8 @@ binder_call(hal_touchfeature_client, hal_touchfeature_server)
 
 allow hal_touchfeature_default touchfeature_device:chr_file rw_file_perms;
 
+allow init vendor_file:file {execute execute_no_trans};
+
 set_prop(hal_touchfeature_default, vendor_touchfeature_prop)
 
 vndbinder_use(hal_touchfeature_default)
