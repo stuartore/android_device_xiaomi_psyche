@@ -15,6 +15,13 @@ on init
     chmod 0666 /dev/goodix_fp
     chown system system /dev/goodix_fp
 
+on post-fs-data
+    # Create fingerprint related directory
+    mkdir /data/vendor/fpc 0770 system system
+    mkdir /data/vendor/goodix 0770 system system
+    mkdir /data/vendor/fpdump 0770 system system
+    mkdir /mnt/vendor/persist/goodix 0770 system system
+    mkdir /mnt/vendor/persist/fpc 0770 system system
 on boot
     # Dc Dimming
     chown system system /sys/class/drm/card0-DSI-1/disp_param

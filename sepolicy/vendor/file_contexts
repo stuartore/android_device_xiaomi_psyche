@@ -19,6 +19,9 @@
 # Charger
 /vendor/bin/batterysecret                                               u:object_r:batterysecret_exec:s0
 /vendor/bin/batteryd                                                    u:object_r:batteryd_exec:s0
+/vendor/bin/charge_logger                                                    u:object_r:charge_logger_exec:s0
+/data/vendor/charge_logger(/.*)?                                             u:object_r:vendor_charge_log_file:s0
+/sys/class/qcom-battery(/.*)?                                                u:object_r:vendor_sysfs_battery_supply:s0
 # Data files
 /data/per_boot(/.*)?                                        u:object_r:per_boot_file:s0
 
@@ -38,8 +41,11 @@
 /dev/mius(.*)?                                                          u:object_r:ultrasound_device:s0
 /dev/xiaomi-touch                                           u:object_r:touchfeature_device:s0
 
+# Fastcharge
+/vendor/bin/hw/vendor\.lineage\.fastcharge@1\.0-service\.psyche                u:object_r:hal_lineage_fastcharge_default_exec:s0
+
 # Fingerprint
-/vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2.3-service\.xiaomi                           u:object_r:hal_fingerprint_default_exec:s0
+/vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.3-service\.xiaomi                          u:object_r:hal_fingerprint_default_exec:s0
 
 # Fingerprint - devices
 /dev/goodix_fp                                                          u:object_r:fingerprint_device:s0
@@ -50,6 +56,8 @@
 /data/vendor/fpc(/.*)?                                                  u:object_r:fingerprint_vendor_data_file:s0
 /data/vendor/fpdump(/.*)?                                               u:object_r:fingerprint_vendor_data_file:s0
 /data/vendor/gf_data(/.*)?                                  u:object_r:fingerprint_vendor_data_file:s0
+/mnt/vendor/persist/fpc(/.*)?                               u:object_r:fingerprint_vendor_data_file:s0
+/mnt/vendor/persist/goodix(/.*)?                            u:object_r:fingerprint_vendor_data_file:s0
 
 # Hexagon DSP-side executable needed for Halide operation
 # This is labeled as public_adsprpcd_file as it needs to be read by apps
@@ -74,6 +82,12 @@
 # Mlipay
 /vendor/bin/mlipayd@1\.1                                                u:object_r:hal_mlipay_default_exec:s0
 
+# Micharge
+/vendor/bin/hw/vendor\.xiaomi\.hardware\.micharge@1\.0-service               u:object_r:hal_micharge_default_exec:s0
+# Misys
+/vendor/bin/hw/vendor\.xiaomi\.hardware\.misys@1\.0-service                  u:object_r:hal_misys_default_exec:s0
+/vendor/bin/hw/vendor\.xiaomi\.hardware\.misys@2\.0-service                  u:object_r:hal_misys_default_exec:s0
+/vendor/bin/hw/vendor\.xiaomi\.hardware\.misys@3\.0-service                  u:object_r:hal_misys_default_exec:s0
 # NFC
 /vendor/bin/hw/android\.hardware\.nfc_snxxx@1\.2-service                u:object_r:hal_nfc_default_exec:s0
 
@@ -105,14 +119,14 @@
 # USB
 /vendor/bin/init\.mi\.usb\.sh                                           u:object_r:vendor_qti_init_shell_exec:s0
 
-# Vibrator Xiaomi
-/(vendor|system/vendor)/bin/hw/vendor\.xiaomi\.hardware\.vibratorfeature\.service       u:object_r:hal_vibrator_default_exec:s0
+# Vibrator
+/vendor/bin/hw/vendor\.qti\.hardware\.vibrator\.service\.xiaomi_kona    u:object_r:hal_vibrator_default_exec:s0
 
-# Vibrator Feature Xiaomi
-/(vendor|system/vendor)/bin/hw/vendor\.xiaomi\.hardware\.vibratorfeature@1\.0-service   u:object_r:hal_vibratorfeature_default_exec:s0
+
 # Vibrator Permissions
 /sys/class/leds/vibrator_aw8697(/.*)?                                                   u:object_r:sysfs_leds:s0
 /sys/class/leds/vibrator(/.*)?                                                          u:object_r:sysfs_leds:s0
+
 # WiFi
 /vendor/bin/nv_mac                                                      u:object_r:vendor_wcnss_service_exec:s0
 /data/vendor/mac_addr(/.*)?                                             u:object_r:vendor_wifi_vendor_data_file:s0
