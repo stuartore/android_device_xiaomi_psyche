@@ -274,6 +274,11 @@ ro.vendor.extension_library=libqti-perfd-client.so
 # Qualcomm System Daemon
 persist.vendor.qcomsysd.enabled=1
 
+# Charge
+persist.vendor.fastchg_enabled=1
+persist.vendor.night.charge=true
+persist.vendor.accelerate.charge=true
+
 # Radio
 persist.radio.NO_STAPA=1
 persist.radio.VT_HYBRID_ENABLE=1
