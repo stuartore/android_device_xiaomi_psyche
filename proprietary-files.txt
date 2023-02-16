@@ -618,6 +618,7 @@ vendor/bin/init.qti.chg_policy.sh
 vendor/etc/init/vendor.qti.hardware.charger_monitor@1.0-service.rc
 vendor/etc/charger_fstab.qti
 vendor/etc/init/init_qfp_daemon.rc
+vendor/etc/init/init.charge_logger.rc
 
 # Charger - MIUI
 vendor/bin/batteryd
@@ -1685,15 +1686,6 @@ vendor/firmware/cs35l41-dsp1-spk-prot-revb2.wmfw
 vendor/firmware/cs35l41-dsp1-spk-prot.bin
 vendor/firmware/cs35l41-dsp1-spk-prot.wmfw
 
-# Vibrator (Xiaomi)
-system/lib/vendor.xiaomi.hardware.vibratorfeature@1.0.so
-system/lib64/vendor.xiaomi.hardware.vibratorfeature@1.0.so
-vendor/bin/hw/vendor.xiaomi.hardware.vibratorfeature.service
-vendor/etc/init/vendor.xiaomi.hardware.vibratorfeature.service.rc
-vendor/etc/init/vendor.xiaomi.hardware.vibratorfeature@1.0-service.rc
-vendor/etc/vintf/manifest/vendor.xiaomi.hardware.vibratorfeature.service.xml
-vendor/lib64/vendor.hardware.vibratorfeature.IVibratorExt-V1-ndk_platform.so
-
 # Vibrator lib
 vendor/lib64/libaachaptics.so
 
@@ -2192,6 +2184,27 @@ vendor/firmware/vibrator_firmware_aidl/98_nfcCardSlow_RTP.bin
 vendor/firmware/vibrator_firmware_aidl/9_ringTone4_P_RTP.bin
 vendor/firmware/wigig/wigig.ini
 
+# Xiaomi - misys
+vendor/bin/hw/vendor.xiaomi.hardware.misys@1.0-service
+vendor/bin/hw/vendor.xiaomi.hardware.misys@2.0-service
+vendor/bin/hw/vendor.xiaomi.hardware.misys@3.0-service
+vendor/etc/init/vendor.xiaomi.hardware.misys@1.0-service.rc
+vendor/etc/init/vendor.xiaomi.hardware.misys@2.0-service.rc
+vendor/etc/init/vendor.xiaomi.hardware.misys@3.0-service.rc
+-vendor/etc/vintf/manifest/vendor.xiaomi.hardware.misys@1.0.xml
+-vendor/etc/vintf/manifest/vendor.xiaomi.hardware.misys@2.0.xml
+-vendor/etc/vintf/manifest/vendor.xiaomi.hardware.misys@3.0.xml
+vendor/lib64/hw/vendor.xiaomi.hardware.misys@1.0-impl.so
+vendor/lib64/hw/vendor.xiaomi.hardware.misys@2.0-impl.so
+vendor/lib64/hw/vendor.xiaomi.hardware.misys@3.0-impl.so
+vendor/lib64/vendor.xiaomi.hardware.misys@1.0.so
+vendor/lib64/vendor.xiaomi.hardware.misys@2.0.so
+vendor/lib64/vendor.xiaomi.hardware.misys@3.0.so
+vendor/lib/liblogwrap_vendor.so
+vendor/lib64/liblogwrap_vendor.so
+
+# mishow service
+vendor/etc/init/init.mishow.ctl.rc
 
 # VPP
 vendor/bin/vppservice
