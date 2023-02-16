@@ -241,8 +241,15 @@ PRODUCT_PACKAGES += \
 # Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.3-service.xiaomi \
-    libudfpshandler \
-    vendor.goodix.hardware.biometrics.fingerprint@2.1.vendor
+    libudfpshandler
+
+PRODUCT_PACKAGES += \
+    vendor.goodix.hardware.biometrics.fingerprint@2.1.vendor \
+    vendor.xiaomi.hardware.touchfeature@1.0.vendor
+
+# Fastcharge
+PRODUCT_PACKAGES += \
+    vendor.lineage.fastcharge@1.0-service.psyche
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
@@ -477,22 +484,19 @@ PRODUCT_SOONG_NAMESPACES += \
 # Vendor service manager
 PRODUCT_PACKAGES += \
     vndservicemanager
+    
+# Vibrator
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.vibrator.service.xiaomi_kona
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
+
 
 # Vibrator Xiaomi
 PRODUCT_PACKAGES += \
-    vendor.qti.hardware.vibrator.service.xiaomi_kona \
     android.hardware.vibrator-V1-ndk.vendor \
     android.hardware.vibrator-V1-ndk_platform.vendor
-
-# Vibrator Configuration
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
-    
-# VNDK
-PRODUCT_COPY_FILES += \
-    prebuilts/vndk/v32/arm64/arch-arm-armv8-a/shared/vndk-sp/libutils.so:$(TARGET_COPY_OUT_VENDOR)/lib/libutils-v32.so \
-    prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-sp/libutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libutils-v32.so
-
 # WiFi
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
