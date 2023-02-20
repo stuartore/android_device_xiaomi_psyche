@@ -22,6 +22,7 @@
 /vendor/bin/charge_logger                                                    u:object_r:charge_logger_exec:s0
 /data/vendor/charge_logger(/.*)?                                             u:object_r:vendor_charge_log_file:s0
 /sys/class/qcom-battery(/.*)?                                                u:object_r:vendor_sysfs_battery_supply:s0
+
 # Data files
 /data/per_boot(/.*)?                                        u:object_r:per_boot_file:s0
 
@@ -84,10 +85,12 @@
 
 # Micharge
 /vendor/bin/hw/vendor\.xiaomi\.hardware\.micharge@1\.0-service               u:object_r:hal_micharge_default_exec:s0
+
 # Misys
 /vendor/bin/hw/vendor\.xiaomi\.hardware\.misys@1\.0-service                  u:object_r:hal_misys_default_exec:s0
 /vendor/bin/hw/vendor\.xiaomi\.hardware\.misys@2\.0-service                  u:object_r:hal_misys_default_exec:s0
 /vendor/bin/hw/vendor\.xiaomi\.hardware\.misys@3\.0-service                  u:object_r:hal_misys_default_exec:s0
+
 # NFC
 /vendor/bin/hw/android\.hardware\.nfc_snxxx@1\.2-service                u:object_r:hal_nfc_default_exec:s0
 
@@ -130,3 +133,8 @@
 # WiFi
 /vendor/bin/nv_mac                                                      u:object_r:vendor_wcnss_service_exec:s0
 /data/vendor/mac_addr(/.*)?                                             u:object_r:vendor_wifi_vendor_data_file:s0
+
+# Label read_ahead_kb in /data partition
+/sys/devices/platform/soc/1d84000.ufshc/host0/target0:0:0/0:0:0:0/block/sda/queue/read_ahead_kb u:object_r:vendor_sysfs_scsi_host:s0
+# Label discard_max_bytes in /data partition
+/sys/devices/platform/soc/1d84000.ufshc/host0/target0:0:0/0:0:0:0/block/sda/queue/discard_max_bytes u:object_r:vendor_sysfs_scsi_host:s0
