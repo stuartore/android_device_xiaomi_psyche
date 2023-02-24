@@ -23,8 +23,6 @@
 /data/vendor/charge_logger(/.*)?                                             u:object_r:vendor_charge_log_file:s0
 /sys/class/qcom-battery(/.*)?                                                u:object_r:vendor_sysfs_battery_supply:s0
 
-# Data files
-/data/per_boot(/.*)?                                        u:object_r:per_boot_file:s0
 
 # Display
 /sys/devices/platform/soc/[a-z0-9]+.qcom,mdss_mdp/drm/card([0-3])+/card([0-3])+-DSI-1/disp_param              u:object_r:vendor_sysfs_graphics:s0
