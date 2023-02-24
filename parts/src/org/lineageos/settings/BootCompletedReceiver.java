@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2018 The LineageOS Project
+ * Copyright (C) 2015 The CyanogenMod Project
+ *               2017-2020 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,27 +20,22 @@ package org.lineageos.settings;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.util.Log;
 
-import org.lineageos.settings.dirac.DiracUtils;
 import org.lineageos.settings.doze.DozeUtils;
+import org.lineageos.settings.popupcamera.PopupCameraUtils;
 import org.lineageos.settings.thermal.ThermalUtils;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
 
+    private static final boolean DEBUG = false;
+    private static final String TAG = "XiaomiParts";
+
     @Override
     public void onReceive(final Context context, Intent intent) {
-        if (!intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
-            return;
-        }
-        DiracUtils.initialize(context);
-
-        // Doze
+        if (DEBUG) Log.d(TAG, "Received boot completed intent");
         DozeUtils.checkDozeService(context);
-        // Force apply our default value for doze if it is not set.
-        DozeUtils.enableDoze(context, DozeUtils.isDozeEnabled(context));
+        PopupCameraUtils.checkPopupCameraService(context);
         ThermalUtils.startService(context);
     }
-
 }
