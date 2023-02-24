@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2015 The CyanogenMod Project
- *               2020 The LineageOS Project
+ * Copyright (C) 2020 Paranoid Android
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,18 +14,21 @@
  * limitations under the License.
  */
 
-package org.lineageos.settings.sensors;
+package org.lineageos.settings.speaker;
 
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
+import android.os.Bundle;
 
-public final class SensorsUtils {
-    public static Sensor getSensor(SensorManager sm, String type) {
-        for (Sensor sensor : sm.getSensorList(Sensor.TYPE_ALL)) {
-            if (type.equals(sensor.getStringType())) {
-                return sensor;
-            }
-        }
-        return null;
+import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity;
+import com.android.settingslib.widget.R;
+
+public class ClearSpeakerActivity extends CollapsingToolbarBaseActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        getFragmentManager().beginTransaction()
+                .replace(R.id.content_frame, new ClearSpeakerFragment())
+                .commit();
     }
 }
