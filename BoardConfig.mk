@@ -97,6 +97,8 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     $(DEVICE_PATH)/configs/hidl/xiaomi_framework_compatibility_matrix.xml \
     vendor/superior/config/device_framework_matrix.xml
 
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+     $(DEVICE_PATH)/dolby/manifests/dolby_framework_matrix.xml
 DEVICE_MATRIX_FILE += $(DEVICE_PATH)/configs/hidl/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/hidl/manifest.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/hidl/xiaomi_manifest.xml
@@ -129,11 +131,10 @@ KERNEL_LLVM_SUPPORT := true
 SELINUX_IGNORE_NEVERALLOWS := true
 
 TARGET_KERNEL_CONFIG := vendor/kona-perf_defconfig vendor/xiaomi/sm8250-common.config
-#TARGET_KERNEL_CONFIG := vendor/kona-perf_defconfig vendor/xiaomi/xiaomi-kona-common.config
 TARGET_KERNEL_CONFIG += vendor/xiaomi/psyche.config
 
 #TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8250
-TARGET_KERNEL_SOURCE := kernel/xiaomi/void-sm8250
+TARGET_KERNEL_SOURCE := kernel/xiaomi/void-aosp-sm8250
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)

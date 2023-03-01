@@ -8,14 +8,22 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit some common PixelExperience stuff
+# SuperioeOS Stuff
 TARGET_USES_AOSP_RECOVERY := true
 TARGET_SUPPORTS_QUICK_TAP := true
 TARGET_BOOT_ANIMATION_RES := 1080
 $(call inherit-product, vendor/superior/config/common.mk)
 
+SUPERIOR_OFFICIAL := false
+BUILD_WITH_GAPPS := true
+
 # Inherit from psyche device
 $(call inherit-product, device/xiaomi/psyche/device.mk)
+
+# Include GMS by default, but rely on environment variable just in case we don't want to build with GMS conditionally
+ifneq ($(WITH_GMS),true)
+$(call inherit-product-if-exists, vendor/gapps/arm64/arm64-vendor.mk)
+endif
 
 PRODUCT_NAME := superior_psyche
 PRODUCT_DEVICE := psyche
