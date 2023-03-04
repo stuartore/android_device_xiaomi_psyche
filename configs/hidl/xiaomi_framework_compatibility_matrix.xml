@@ -92,7 +92,6 @@
     <!-- displayfeature -->
     <hal format="hidl" optional="true">
         <name>vendor.xiaomi.hardware.displayfeature</name>
-        <transport>hwbinder</transport>
         <version>1.0</version>
         <interface>
             <name>IDisplayFeature</name>

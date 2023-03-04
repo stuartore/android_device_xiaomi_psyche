@@ -1,5 +1,4 @@
 type fingerprint_device, dev_type;
-
 type hall_device, dev_type;
 
 type lirc_device, dev_type;

@@ -13,7 +13,13 @@ TARGET_USES_AOSP_RECOVERY := true
 TARGET_SUPPORTS_QUICK_TAP := true
 TARGET_BOOT_ANIMATION_RES := 1080
 $(call inherit-product, vendor/superior/config/common.mk)
-
+# Bootanimation Resolution
+TARGET_BOOT_ANIMATION_RES := 1080
+# Charging Animation
+TARGET_INCLUDE_PIXEL_CHARGER := true
+# Disable/Enable Blur Support, default is false
+TARGET_ENABLE_BLUR := true
+# Officialify 
 SUPERIOR_OFFICIAL := false
 BUILD_WITH_GAPPS := true
 
@@ -25,6 +31,10 @@ ifneq ($(WITH_GMS),true)
 $(call inherit-product-if-exists, vendor/gapps/arm64/arm64-vendor.mk)
 endif
 
+#Udfps Stuff
+SUPERIOR_UDFPS_ANIMATIONS := true
+# Superior Prebuilts
+USE_MOTO_CALCULATOR := true
 PRODUCT_NAME := superior_psyche
 PRODUCT_DEVICE := psyche
 PRODUCT_MANUFACTURER := Xiaomi

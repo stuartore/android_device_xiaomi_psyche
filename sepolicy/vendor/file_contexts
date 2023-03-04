@@ -42,13 +42,10 @@
 
 # Fastcharge
 /vendor/bin/hw/vendor\.lineage\.fastcharge@1\.0-service\.psyche                u:object_r:hal_lineage_fastcharge_default_exec:s0
-
 # Fingerprint
 /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.3-service\.xiaomi                          u:object_r:hal_fingerprint_default_exec:s0
-
 # Fingerprint - devices
 /dev/goodix_fp                                                          u:object_r:fingerprint_device:s0
-
 # Fingerprint - data
 /data/gf_data(/.*)?                                                     u:object_r:fingerprint_data_file:s0
 /data/vendor/goodix(/.*)?                                               u:object_r:fingerprint_vendor_data_file:s0
@@ -96,7 +93,7 @@
 /mnt/vendor/persist/subsys(/.*)?                                        u:object_r:persist_subsys_file:s0
 
 # Power
-/vendor/bin/hw/android\.hardware\.power-service\.xiaomi-libperfmgr      u:object_r:hal_power_default_exec:s0
+/vendor/bin/hw/android\.hardware\.power-service\.xiaomi-sm8250-libperfmgr      u:object_r:hal_power_default_exec:s0
 
 # Sensors
 /dev/akm09970                                                                                                                   u:object_r:hall_device:s0
