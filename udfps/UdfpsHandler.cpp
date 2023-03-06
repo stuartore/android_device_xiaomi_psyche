@@ -12,6 +12,7 @@
 #include <android-base/unique_fd.h>
 #include <fcntl.h>
 #include <poll.h>
+#include <fstream>
 #include <thread>
 #include <unistd.h>
 
@@ -27,10 +28,23 @@
 #define TOUCH_MAGIC 0x5400
 #define TOUCH_IOC_SETMODE TOUCH_MAGIC + 0
 
+#define DISPPARAM_PATH "/sys/devices/platform/soc/ae00000.qcom,mdss_mdp/drm/card0/card0-DSI-1/disp_param"
+#define DISPPARAM_FOD_HBM_OFF "0xE0000"
+
 static const char* kFodUiPaths[] = {
         "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/fod_ui",
         "/sys/devices/platform/soc/soc:qcom,dsi-display/fod_ui",
 };
+namespace {
+
+
+template <typename T>
+static void set(const std::string& path, const T& value) {
+    std::ofstream file(path);
+    file << value;
+}
+
+} // anonymous namespace
 
 static bool readBool(int fd) {
     char c;
@@ -83,7 +97,7 @@ class XiaomiKonaUdfpsHandler : public UdfpsHandler {
                     LOG(ERROR) << "failed to poll fd, err: " << rc;
                     continue;
                 }
-
+			
                 mDevice->extCmd(mDevice, COMMAND_NIT,
                                 readBool(fd) ? PARAM_NIT_FOD : PARAM_NIT_NONE);
             }
@@ -100,6 +114,7 @@ class XiaomiKonaUdfpsHandler : public UdfpsHandler {
 
     void onAcquired(int32_t result, int32_t vendorCode) {
         if (result == FINGERPRINT_ACQUIRED_GOOD) {
+	    set(DISPPARAM_PATH, DISPPARAM_FOD_HBM_OFF);
             int arg[2] = {TOUCH_FOD_ENABLE, FOD_STATUS_OFF};
             ioctl(touch_fd_.get(), TOUCH_IOC_SETMODE, &arg);
         } else if (vendorCode == 20 || vendorCode == 21 || vendorCode == 22 || vendorCode == 23 || vendorCode == 33)  {
@@ -126,6 +141,7 @@ class XiaomiKonaUdfpsHandler : public UdfpsHandler {
     }
 
     void cancel() {
+	set(DISPPARAM_PATH, DISPPARAM_FOD_HBM_OFF);
         int arg[2] = {TOUCH_FOD_ENABLE, FOD_STATUS_OFF};
         ioctl(touch_fd_.get(), TOUCH_IOC_SETMODE, &arg);
     }

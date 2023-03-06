@@ -21,6 +21,7 @@ genfscon sysfs /devices/platform/soc/soc:fingerprint_fpc/power_cfg              
 genfscon sysfs /devices/platform/soc/soc:fingerprint_fpc/request_vreg           u:object_r:vendor_sysfs_fingerprint:s0
 genfscon sysfs /devices/platform/soc/soc:fingerprint_fpc/wakeup_enable          u:object_r:vendor_sysfs_fingerprint:s0
 genfscon sysfs /devices/platform/soc/soc:fingerprint_fpc/vendor                        u:object_r:vendor_sysfs_fingerprint:s0
+
 # Dc Dimming
 genfscon sysfs /class/drm/card0-DSI-1/disp_param                                              u:object_r:vendor_sysfs_graphics:s0
 

@@ -28,8 +28,8 @@
 #
 #
 
-import /vendor/etc/init/init.mishow.ctl.rc
 import /vendor/etc/init/hw/init.mi_thermald.rc
+import /vendor/etc/init/init.batteryd.rc
 import /vendor/etc/init/hw/init.batterysecret.rc
 import /vendor/etc/init/init.charge_logger.rc
 on early-init
@@ -164,11 +164,11 @@ on boot
     chown system system /sys/class/drm/card0-DSI-1/disp_param
     chown system system /proc/tp_selftest
     chmod 0664 /proc/tp_selftest
-    chmod 0664 /sys/class/drm/card0-DSI-1/disp_param
+    chmod 0700 /sys/class/drm/card0-DSI-1/disp_param
     chown system system /sys/class/drm/card0-DSI-1/mipi_reg
     chmod 0664 /sys/class/drm/card0-DSI-1/mipi_reg
     chown system system /sys/class/drm/card0-DSI-1/panel_info
-    chmod 0444 /sys/class/drm/card0-DSI-1/panel_info
+    chmod 0744 /sys/class/drm/card0-DSI-1/panel_info
     chown system system /sys/class/drm/card0-DSI-1/oled_pmic_id
     chmod 0444 /sys/class/drm/card0-DSI-1/oled_pmic_id
     chown system system /sys/class/drm/card0-DSI-1/wp_info
@@ -214,10 +214,9 @@ on boot
     # Charge
     chown system system /sys/class/thermal/thermal_message/charger_temp
 
-    #chown/chmod input_suspend node as needed from mishow service
     chown system system /sys/class/qcom-battery/input_suspend
     chmod 774 /sys/class/qcom-battery/input_suspend
-
+    chmod 0666 /dev/input/event2
 on property:persist.vendor.sys.fp.fod.large_field=1
     write sys/bus/i2c/devices/3-0049/fod_area 1
 
