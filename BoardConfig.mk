@@ -73,15 +73,18 @@ TARGET_NO_BOOTLOADER := true
 
 # Display
 BOARD_USES_ADRENO := true
+TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS := 0x546C00000000
 TARGET_NO_RAW10_CUSTOM_FORMAT := true
 TARGET_SCREEN_DENSITY := 420
 TARGET_RECOVERY_HEIGHT := 163
+TARGET_GRALLOC_HANDLE_HAS_RESERVED_SIZE := true
 TARGET_USES_COLOR_METADATA := true
 TARGET_USES_DISPLAY_RENDER_INTENTS := true
 TARGET_USES_DRM_PP := true
+TARGET_USES_GRALLOC1 := true
+TARGET_USES_GRALLOC4 := true
 TARGET_USES_HWC2 := true
 TARGET_USES_ION := true
-TARGET_GRALLOC_HANDLE_HAS_RESERVED_SIZE := false
 
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
@@ -114,29 +117,40 @@ TARGET_RECOVERY_DEVICE_MODULES ?= init_xiaomi_psyche
 # Kernel
 BOARD_BOOT_HEADER_VERSION := 3
 BOARD_KERNEL_BASE := 0x00000000
+BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 androidboot.usbcontroller=a600000.dwc3 swiotlb=2048 loop.max_part=7 cgroup.memory=nokmem,nosocket reboot=panic_warm
 BOARD_KERNEL_CMDLINE += androidboot.fstab_suffix=qcom
 BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
 BOARD_KERNEL_CMDLINE += \
     console=ttyMSM0,115200n8 \
-    pcie_ports=compat
+    pcie_ports=compat \
+    kpti=off
 #BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_IMAGE_NAME := Image
-BOARD_KERNEL_PAGESIZE := 4096
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_RAMDISK_OFFSET := 0x01000000
-BOARD_RAMDISK_USE_LZ4 := true
+KERNEL_LD := LD=ld.lld
 
 KERNEL_LLVM_SUPPORT := true
-#SELINUX_IGNORE_NEVERALLOWS := true
 
 TARGET_KERNEL_CONFIG := vendor/kona-perf_defconfig vendor/xiaomi/sm8250-common.config
 TARGET_KERNEL_CONFIG += vendor/xiaomi/psyche.config
 
-#TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8250
-TARGET_KERNEL_SOURCE := kernel/xiaomi/void-aosp-sm8250
+TARGET_KERNEL_SOURCE := kernel/xiaomi/devs-sm8250
+#TARGET_KERNEL_SOURCE := kernel/xiaomi/void-aosp-sm8250
+
+# Kernel Clang
+TARGET_KERNEL_CLANG_COMPILE := true
+TARGET_KERNEL_CLANG_VERSION := ZyC
+TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts/clang/host/linux-x86/ZyC-clang
+TARGET_KERNEL_ADDITIONAL_FLAGS += LLVM=1 LLVM_IAS=1
+TARGET_KERNEL_ADDITIONAL_FLAGS := LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip
+TARGET_KERNEL_ADDITIONAL_FLAGS += HOSTCFLAGS="-fuse-ld=lld -Wno-unused-command-line-argument"
+
+# Kernel Supported Features
+BOARD_RAMDISK_USE_LZ4 := true
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
