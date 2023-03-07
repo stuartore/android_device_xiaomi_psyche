@@ -24,5 +24,3 @@ vendor.xiaomi.hardware.citsensorservice::ICitSensorService                    u:
 # Sensors Service
 android.frameworks.sensorservice::ISensorManager                              u:object_r:fwk_sensor_hwservice:s0
 
-# Xiaomi charge
-vendor.xiaomi.hardware.micharge::IMiCharge                                           u:object_r:hal_micharge_hwservice:s0

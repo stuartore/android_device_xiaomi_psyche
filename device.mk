@@ -299,9 +299,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
 
-# Fastcharge
-PRODUCT_PACKAGES += \
-    vendor.lineage.fastcharge@1.0-service.psyche
+# Charge
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.cp.fcc_main_ua=400000 \
+    persist.vendor.cp.taper_term_mv=7000 \
+    persist.vendor.cp.qc3p5_vfloat_offset_uv=110000 \
+    persist.vendor.pps.disallowed=1 \
+    persist.vendor.hvdcp_opti.disallowed=1
 
 # Gatekeeper
 PRODUCT_PACKAGES += \

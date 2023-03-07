@@ -41,8 +41,6 @@
 /dev/mius(.*)?                                                          u:object_r:ultrasound_device:s0
 /dev/xiaomi-touch                                           u:object_r:touchfeature_device:s0
 
-# Fastcharge
-/vendor/bin/hw/vendor\.lineage\.fastcharge@1\.0-service\.psyche                u:object_r:hal_lineage_fastcharge_default_exec:s0
 
 # Power
 /sys/touchpanel/double_tap                                        u:object_r:vendor_sysfs_double_tap:s0
@@ -84,9 +82,6 @@
 
 # Mlipay
 /vendor/bin/mlipayd@1\.1                                                u:object_r:hal_mlipay_default_exec:s0
-
-# Micharge
-/vendor/bin/hw/vendor\.xiaomi\.hardware\.micharge@1\.0-service               u:object_r:hal_micharge_default_exec:s0
 
 # NFC
 /vendor/bin/hw/android\.hardware\.nfc_snxxx@1\.2-service                u:object_r:hal_nfc_default_exec:s0
