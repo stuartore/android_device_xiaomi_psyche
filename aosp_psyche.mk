@@ -8,19 +8,20 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# SuperioeOS Stuff
-TARGET_USES_AOSP_RECOVERY := true
+# Inherit some common Project-Elixir stuff.
 TARGET_SUPPORTS_QUICK_TAP := true
 TARGET_BOOT_ANIMATION_RES := 1080
-$(call inherit-product, vendor/superior/config/common.mk)
+$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
+IS_PHONE := true
+ELIXIR_MAINTAINER := stuartore
+ELIXIR_BUILD_TYPE := UNOFFICIAL
+EXTRA_UDFPS_ANIMATIONS := true
+TARGET_FACE_UNLOCK_SUPPORTED := true
+TARGET_INCLUDE_LIVE_WALLPAPERS := true
 # Bootanimation Resolution
 TARGET_BOOT_ANIMATION_RES := 1080
 # Charging Animation
 TARGET_INCLUDE_PIXEL_CHARGER := true
-# Disable/Enable Blur Support, default is false
-TARGET_ENABLE_BLUR := true
-# Officialify 
-SUPERIOR_OFFICIAL := false
 BUILD_WITH_GAPPS := true
 
 # Inherit from psyche device
@@ -31,11 +32,7 @@ ifneq ($(WITH_GMS),true)
 $(call inherit-product-if-exists, vendor/gapps/arm64/arm64-vendor.mk)
 endif
 
-#Udfps Stuff
-SUPERIOR_UDFPS_ANIMATIONS := true
-# Superior Prebuilts
-USE_MOTO_CALCULATOR := true
-PRODUCT_NAME := superior_psyche
+PRODUCT_NAME := aosp_psyche
 PRODUCT_DEVICE := psyche
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_BRAND := Xiaomi
@@ -43,3 +40,7 @@ PRODUCT_MODEL := 2112123AC
 
 PRODUCT_CHARACTERISTICS := nosdcard
 BUILD_FINGERPRINT := Xiaomi/psyche/psyche:12/RKQ1.211001.001/V13.0.10.0.SLDCNXM:user/release-keys
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRIVATE_BUILD_DESC="psyche-user 12 RKQ1.211001.001 V13.0.10.0.SLDCNXM release-keys" \
+    TARGET_PRODUCT="psyche"
