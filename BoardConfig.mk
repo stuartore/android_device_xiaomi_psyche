@@ -135,11 +135,12 @@ KERNEL_LD := LD=ld.lld
 
 KERNEL_LLVM_SUPPORT := true
 
+# Kernel Config
 TARGET_KERNEL_CONFIG := vendor/kona-perf_defconfig vendor/xiaomi/sm8250-common.config
 TARGET_KERNEL_CONFIG += vendor/xiaomi/psyche.config
 
-TARGET_KERNEL_SOURCE := kernel/xiaomi/devs-sm8250
-#TARGET_KERNEL_SOURCE := kernel/xiaomi/void-aosp-sm8250
+#TARGET_KERNEL_SOURCE := kernel/xiaomi/devs-sm8250
+TARGET_KERNEL_SOURCE := kernel/xiaomi/void-aosp-sm8250
 
 # Kernel Clang
 TARGET_KERNEL_CLANG_COMPILE := true
