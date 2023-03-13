@@ -70,17 +70,13 @@ dt_bringup_superior(){
 }
 
 psyche_rom_select(){
-	if [[ -d hardware/xiaomi ]] && [[ -d device/xiaomi/psyche ]] && [[ -d vendor/xiaomi/psyche ]] && [[ kernel/xiaomi/void-aosp-sm8250 ]] && [[ -d vendor/xiaomi-firmware/psyche ]];then
-		return
-	fi
-
-	select rom_to_build in "PixelExperience 13" "Superior 13" "Crdroid 13" "RiceDroid 13"
+	select rom_to_build in "PixelExperience 13" "Superior 13 (newest to bringup)" "Crdroid 13" "RiceDroid 13"
 	do
 		case $rom_to_build in
 			"PixelExperience 13")
 				dt_branch="thirteen"
 				;;
-			"Superior 13")
+			"Superior 13*")
 				dt_branch="superior-13"
 				;;
 			"Crdroid 13")
@@ -96,9 +92,38 @@ psyche_rom_select(){
 		esac
 		break
 	done
+}
+
+psyche_rom_setup(){
+	if [[ -d hardware/xiaomi ]] && [[ -d device/xiaomi/psyche ]] && [[ -d vendor/xiaomi/psyche ]] && [[ kernel/xiaomi/void-aosp-sm8250 ]] && [[ -d vendor/xiaomi-firmware/psyche ]];then
+		return
+	fi
 	
+	if [[ ! $(grep 'revision="android-13' .repo/manifests/default.xml) ]];then echo -e "\033[1;33m=>\033[0m SKIP - source code is \033[1;33mnot Android 13\033[0m";return;fi
+
+	rom_str="$(grep 'url' .repo/manifests.git/config | uniq | sed 's/url//g' | sed 's/=//g' | awk  -F '/' '{print $4}')"
+	case $rom_str in
+		"PixelExperience")
+			dt_branch="thirteen"
+			;;
+		"SuperiorOS")
+			dt_branch="superior-13"
+			;;
+		"crdroidandroid")
+			dt_branch="crd-13"
+			;;
+		"ricedroidOSS")
+			dt_branch="rice-13"
+			;;
+		*)
+			psyche_rom_select
+			;;
+	esac
+
+	echo -e "\033[32m=>\033[0m Detect \033[1;36m${rom_str}\033[0m and select device branch \033[1;32m${dt_branch}\033[0m\n"
 	psyche_deps ${dt_branch}
 }
+
 case $script_mode in
 	"DT_BRINGUP")
 		dt_bringup_superior
@@ -113,5 +138,5 @@ case $script_mode in
 		;;
 esac
 
-psyche_rom_select
+psyche_rom_setup
 psyche_kernel_patch
