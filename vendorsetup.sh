@@ -21,7 +21,11 @@ git_check_dir(){
 
 psyche_deps(){
 	# use git_check_dir to setup dependencies
-	git_check_dir https://github.com//LineageOS/android_hardware_xiaomi lineage-20 hardware/xiaomi
+	# hardware/xiaomi: use AOSPA
+
+	#git_check_dir https://github.com//LineageOS/android_hardware_xiaomi lineage-20 hardware/xiaomi
+
+	git_check_dir https://github.com//AOSPA/android_hardware_xiaomi topaz hardware/xiaomi
 	git_check_dir https://github.com/stuartore/android_device_xiaomi_psyche $1 device/xiaomi/psyche
 	git_check_dir https://gitlab.com/stuartore/android_vendor_xiaomi_psyche thirteen vendor/xiaomi/psyche
 	git_check_dir https://gitlab.com/stuartore/vendor_xiaomi_psyche-firmware thirteen vendor/xiaomi-firmware/psyche
