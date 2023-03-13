@@ -10,12 +10,6 @@ else
 	script_mode='SKIP_EXIT'
 fi
 
-psyche_more_end_info(){
-	cat<<EOF
-	here you're on the way, eg: lunch
-EOF
-}
-
 git_check_dir(){
 	if [[ ! -d $3 ]];then
 		mkdir -p $(dirname $3)
@@ -44,7 +38,7 @@ psyche_deps(){
 	
 	# type info when exit
 	if [[ -d hardware/xiaomi ]] && [[ -d device/xiaomi/psyche ]] && [[ -d vendor/xiaomi/psyche ]] && [[ kernel/xiaomi/void-aosp-sm8250 ]] && [[ -d vendor/xiaomi-firmware/psyche ]];then
-		psyche_more_end_info
+		echo -e "\n\033[1;32m=>\033[0m here you're on the way, eg: lunch"
 	fi
 }
 
@@ -108,6 +102,10 @@ case $script_mode in
 		;;
 	"ANDROID_SETUP")
 		sleep .1
+		;;
+	*)
+		echo "Please copy this scrpit in Device tree directory for Xiaomi 12X(psyche)"
+		exit 1
 		;;
 esac
 
